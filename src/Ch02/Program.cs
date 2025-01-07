@@ -3,6 +3,7 @@
 ForegroundColor = ConsoleColor.DarkCyan;
 
 new NamesWithArrayDemo().Run();
+new NamesWithArrayList().Run();
 
 ResetColor();
 
