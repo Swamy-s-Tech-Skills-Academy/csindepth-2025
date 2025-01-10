@@ -5,16 +5,17 @@ namespace Ch02.Demos;
 
 public class NamesWithStringCollection : IDemoProgram
 {
-    static StringCollection GenerateNames()
-    {
-        StringCollection names = ["Gamma", "Vlissides", "Johnson", "Helm"];
+    public string Title => "Names with StringCollection (Avoid using StringCollection)";
 
-        return names;
-    }
+    private static StringCollection GenerateNames() => ["Gamma", "Vlissides", "Johnson", "Helm"];
 
-    static void PrintNames(StringCollection names)
+    private static void PrintNames(StringCollection names)
     {
-        foreach (string name in names!)
+        if (names is null)
+        {
+            throw new ArgumentNullException(nameof(names));
+        }
+        foreach (string name in names!) // Null-forgiving operator is still needed
         {
             Console.WriteLine(name);
         }
@@ -22,6 +23,8 @@ public class NamesWithStringCollection : IDemoProgram
 
     public void Run()
     {
+        WriteLine($"\nRunning {Title}...");
+
         StringCollection names = GenerateNames();
 
         PrintNames(names);
