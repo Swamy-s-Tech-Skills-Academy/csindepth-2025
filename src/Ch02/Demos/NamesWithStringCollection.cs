@@ -3,7 +3,7 @@ using System.Collections.Specialized;
 
 namespace Ch02.Demos;
 
-public class NamesWithStringCollection : IDemoProgram
+internal class NamesWithStringCollectionDemo : IDemoProgram
 {
     public string Title => "Names with StringCollection (Avoid using StringCollection)";
 
@@ -11,13 +11,11 @@ public class NamesWithStringCollection : IDemoProgram
 
     private static void PrintNames(StringCollection names)
     {
-        if (names is null)
+        ArgumentNullException.ThrowIfNull(names);
+
+        foreach (string name in names!)
         {
-            throw new ArgumentNullException(nameof(names));
-        }
-        foreach (string name in names!) // Null-forgiving operator is still needed
-        {
-            Console.WriteLine(name);
+            WriteLine(name);
         }
     }
 
@@ -25,8 +23,6 @@ public class NamesWithStringCollection : IDemoProgram
     {
         WriteLine($"\nRunning {Title}...");
 
-        StringCollection names = GenerateNames();
-
-        PrintNames(names);
+        PrintNames(GenerateNames());
     }
 }

@@ -2,22 +2,19 @@
 
 namespace Ch02.Demos;
 
-public class NamesWithListDemo : IDemoProgram
+internal class NamesWithListDemo : IDemoProgram
 {
     public string Title => "Names with List<string>";
 
-    private static List<string> GenerateNames() => ["Gamma", "Vlissides", "Johnson", "Helm"]; // Use List<string> and expression body
+    private static List<string> GenerateNames() => ["Gamma", "Vlissides", "Johnson", "Helm"];
 
     private static void PrintNames(List<string> names)
     {
-        if (names is null)
-        {
-            throw new ArgumentNullException(nameof(names));
-        }
+        ArgumentNullException.ThrowIfNull(names);
 
         foreach (string name in names)
         {
-            Console.WriteLine(name);
+            WriteLine(name);
         }
     }
 
@@ -25,8 +22,6 @@ public class NamesWithListDemo : IDemoProgram
     {
         WriteLine($"\nRunning {Title}...");
 
-        List<string> names = GenerateNames();
-
-        PrintNames(names);
+        PrintNames(GenerateNames()); 
     }
 }

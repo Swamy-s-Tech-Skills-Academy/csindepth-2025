@@ -3,19 +3,19 @@ using System.Collections;
 
 namespace Ch02.Demos;
 
-public class NamesWithArrayList : IDemoProgram
+internal class NamesWithArrayListDemo : IDemoProgram
 {
-    public string Title => "Names with ArrayList";
+    public string Title => "Names with ArrayList (Avoid using ArrayList)";
 
-    static ArrayList GenerateNames()
+    private static ArrayList GenerateNames() => ["Gamma", "Vlissides", "Johnson", "Helm"];
+
+    private static void PrintNames(ArrayList names)
     {
-        ArrayList names = ["Gamma", "Vlissides", "Johnson", "Helm"];
+        if (names is null)
+        {
+            throw new ArgumentNullException(nameof(names));
+        }
 
-        return names;
-    }
-
-    static void PrintNames(ArrayList names)
-    {
         foreach (string name in names)
         {
             WriteLine(name);
@@ -25,9 +25,6 @@ public class NamesWithArrayList : IDemoProgram
     public void Run()
     {
         WriteLine($"\nRunning {Title}...");
-
-        ArrayList names = GenerateNames();
-
-        PrintNames(names);
+        PrintNames(GenerateNames()); // Directly call GenerateNames in PrintNames
     }
 }

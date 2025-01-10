@@ -6,14 +6,9 @@ internal class NamesWithArrayDemo : IDemoProgram
 {
     public string Title => "Names with string[]";
 
-    static string[] GenerateNames()
-    {
-        string[] names = ["Gamma", "Vlissides", "Johnson", "Helm"];
+    private static string[] GenerateNames() => ["Gamma", "Vlissides", "Johnson", "Helm"];
 
-        return names;
-    }
-
-    static void PrintNames(string[] names)
+    private static void PrintNames(string[] names)
     {
         foreach (string name in names)
         {
@@ -25,8 +20,7 @@ internal class NamesWithArrayDemo : IDemoProgram
     {
         WriteLine($"\nRunning {Title}...");
 
-        string[] names = GenerateNames();
-
-        PrintNames(names);
+        PrintNames(GenerateNames()); 
     }
+
 }
