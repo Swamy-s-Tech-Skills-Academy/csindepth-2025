@@ -20,7 +20,7 @@ internal class NamesWithArrayDemo : IDemoProgram
     {
         WriteLine($"\nRunning {Title}...");
 
-        PrintNames(GenerateNames()); 
+        PrintNames(GenerateNames());
     }
 
 }

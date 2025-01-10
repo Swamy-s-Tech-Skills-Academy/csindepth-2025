@@ -1,13 +1,26 @@
 ﻿using Ch02.Demos;
+using Ch02.Interfaces;
 
-ForegroundColor = ConsoleColor.DarkCyan;
+// Top-level statements
+Random random = new();
 
-new NamesWithArrayDemo().Run();
-new NamesWithArrayList().Run();
-new NamesWithListDemo().Run();
-new NamesWithStringCollection().Run();
+List<IDemoProgram> demos = [
+    new NamesWithArrayDemo(),
+    new NamesWithListDemo(),
+    new NamesWithArrayListDemo(),
+    new NamesWithStringCollectionDemo()
+];
+
+foreach (IDemoProgram demo in demos)
+{
+    ForegroundColor = (ConsoleColor)Enum.ToObject(typeof(ConsoleColor), random.Next(1, 16));
+
+    demo.Run();
+
+    WriteLine();
+}
 
 ResetColor();
 
-WriteLine("\n\nPress any key to exit...");
+WriteLine("\nPress any key to exit...");
 ReadKey(true);

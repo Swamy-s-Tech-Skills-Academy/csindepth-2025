@@ -22,6 +22,6 @@ internal class NamesWithListDemo : IDemoProgram
     {
         WriteLine($"\nRunning {Title}...");
 
-        PrintNames(GenerateNames()); 
+        PrintNames(GenerateNames());
     }
 }
